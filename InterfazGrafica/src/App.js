@@ -11,6 +11,8 @@ import { Register } from './screens/Register';
 import Producto from './screens/Producto';
 import Carrito from './screens/Carrito';
 import AdminDashboard from './screens/AdminDashboard';
+import Adminusers from './screens/Adminusers';
+import AdminUserScreen from './screens/AdminUserScreen';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/producto" element={<Producto />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/usuarios" element={<Adminusers />} />
+        <Route path="/admin/usuario/:usuarioid" element={<AdminUserScreen />} />
       </Routes>
     </Router>
   );

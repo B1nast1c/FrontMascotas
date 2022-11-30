@@ -1,9 +1,14 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
+import Adminhome from '../components/Admin/Adminhome'
+import TopbarAdmin from '../components/TopbarAdmin'
 
 const AdminDashboard = () => {
     return (
-        <Sidebar />
+        <div>
+            <TopbarAdmin />
+            <Adminhome />
+        </div>
+
     )
 }
 
