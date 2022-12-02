@@ -1,11 +1,12 @@
 .text-logo {
   color: rgb(13, 110, 253) !important;
+  font-size: 33px !important;
 }
 
 .topbar {
   width: 100%;
   height: 50px;
-  background-color: white;
+  background-color: #fbfbff;
   position: sticky;
   top: 0;
   z-index: 999;

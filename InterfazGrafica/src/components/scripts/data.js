@@ -141,3 +141,36 @@ export const userRows = [
         transaction: "$120.00",
     },
 ]
+
+export const Categories = [
+    {
+        id: 1,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+    {
+        id: 2,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+    {
+        id: 3,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+    {
+        id: 4,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+    {
+        id: 5,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+    {
+        id: 6,
+        nombre: "Categoria 1",
+        detalles: "Detalle 1",
+    },
+]

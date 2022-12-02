@@ -1,48 +1,42 @@
 import React, { useState } from 'react'
-import { userRows } from "../../scripts/data";
+import { Categories } from "../../scripts/data";
 import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const Userlist = () => {
-    const [data, setData] = useState(userRows);
+const Categorylist = () => {
+    const [data, setData] = useState(Categories);
 
     const handleDelete = (id) => {
         setData(data.filter((item) => item.id !== id));
     };
 
     const columns = [
-        { field: "id", headerName: "ID", width: 90 },
         {
-            field: "user",
-            headerName: "Usuario",
+            field: "nombre",
+            headerName: "Nombre",
             width: 200,
             renderCell: (params) => {
                 return (
                     <div className="userListUser">
-                        <img className="userListImg" src={params.row.avatar} alt="" />
-                        {params.row.username}
+                        {params.row.nombre}
                     </div>
                 );
             },
         },
-        { field: "apellido", headerName: "Apellidos", width: 200 },
         {
-            field: "edad",
-            headerName: "Edad",
-            width: 120,
-        },
-        {
-            field: "correo",
-            headerName: "Correo",
-            width: 160,
-        },
-        {
-            field: "direccion",
-            headerName: "Direccion",
-            width: 160,
+            field: "detalles",
+            headerName: "Detalles",
+            width: 200,
+            renderCell: (params) => {
+                return (
+                    <div className="userListUser">
+                        {params.row.detalles}
+                    </div>
+                );
+            },
         },
         {
             field: "action",
@@ -51,7 +45,7 @@ const Userlist = () => {
             renderCell: (params) => {
                 return (
                     <div>
-                        <Link to={"/admin/usuario/" + params.row.id}>
+                        <Link to={"/admin/categoria/" + params.row.id}>
                             <button className="userListEdit">Editar</button>
                         </Link>
                         <FontAwesomeIcon
@@ -66,9 +60,9 @@ const Userlist = () => {
     ];
     return (
         <div className="userList">
-            <h1 className='user-title'>Listado de Usuarios</h1>
+            <h1 className='user-title'>Listado de Categorias</h1>
             <div className="add-container">
-                <Link to="/admin/usuarios/crear" className='user-add'>Agregar Usuario</Link>
+                <Link to="/admin/categorias/crear" className='user-add'>Agregar Categoría</Link>
             </div>
             <DataGrid
                 rows={data}
@@ -76,10 +70,9 @@ const Userlist = () => {
                 columns={columns}
                 pageSize={8}
                 checkboxSelection
-                className="grid"
             />
         </div>
     )
 }
 
-export default Userlist
+export default Categorylist

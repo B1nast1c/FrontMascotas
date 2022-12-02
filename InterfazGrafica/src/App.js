@@ -13,6 +13,11 @@ import Carrito from './screens/Carrito';
 import AdminDashboard from './screens/AdminDashboard';
 import Adminusers from './screens/Adminusers';
 import AdminUserScreen from './screens/AdminUserScreen';
+import AdminCreateuser from './screens/AdminCreateuser';
+import AdminCategorias from './screens/AdminCategorias';
+import AdminCategoriaEditar from './screens/AdminCategoriaEditar';
+import AdminCategoriaCrear from './screens/AdminCategoriaCrear';
+
 
 function App() {
   return (
@@ -30,6 +35,10 @@ function App() {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/usuarios" element={<Adminusers />} />
         <Route path="/admin/usuario/:usuarioid" element={<AdminUserScreen />} />
+        <Route path="/admin/usuarios/crear" element={<AdminCreateuser />} />
+        <Route path="/admin/categorias" element={<AdminCategorias />} />
+        <Route path="/admin/categoria/:categoriaid" element={<AdminCategoriaEditar />} />
+        <Route path="/admin/categorias/crear" element={<AdminCategoriaCrear />} />
       </Routes>
     </Router>
   );

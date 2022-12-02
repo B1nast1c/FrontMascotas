@@ -9,7 +9,7 @@ const User = () => {
         <div className="user">
             <div className="userTitleContainer">
                 <h1 className="userTitle">Editar Usuario</h1>
-                <Link to="/admin/usuarios/crear">
+                <Link to="/admin/usuarios">
                     <button className="userAddButton">Confirmar</button>
                 </Link>
             </div>
@@ -55,7 +55,7 @@ const User = () => {
                                 <label>Nombre</label>
                                 <input
                                     type="text"
-                                    placeholder="nombre"
+                                    placeholder="Nombre"
                                     className="userUpdateInput"
                                 />
                             </div>
@@ -63,7 +63,7 @@ const User = () => {
                                 <label>Apellido Paterno</label>
                                 <input
                                     type="text"
-                                    placeholder="apellido"
+                                    placeholder="Apellido"
                                     className="userUpdateInput"
                                 />
                             </div>
@@ -71,7 +71,7 @@ const User = () => {
                                 <label>Apellido Materno</label>
                                 <input
                                     type="text"
-                                    placeholder="apellido"
+                                    placeholder="Apellido"
                                     className="userUpdateInput"
                                 />
                             </div>
@@ -87,7 +87,7 @@ const User = () => {
                                 <label>Correo</label>
                                 <input
                                     type="text"
-                                    placeholder="correo"
+                                    placeholder="Correo"
                                     className="userUpdateInput"
                                 />
                             </div>
@@ -95,20 +95,10 @@ const User = () => {
                                 <label>Dirección</label>
                                 <input
                                     type="text"
-                                    placeholder="direccion"
+                                    placeholder="Direccion"
                                     className="userUpdateInput"
                                 />
                             </div>
-                        </div>
-                        <div className="userUpdateRight">
-                            <div className="userUpdateUpload">
-                                <img
-                                    className="userUpdateImg"
-                                    src="https://pm1.narvii.com/8148/d996aa73fec3a5b961832dc864344cc5a0a5751cr1-1440-1080v2_hq.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <button className="userUpdateButton">Actualizar Cambios</button>
                         </div>
                     </form>
                 </div>

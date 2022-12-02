@@ -46,8 +46,8 @@
 }
 
 .userShowImg {
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -146,9 +146,10 @@
 .userUpdateButton {
   border-radius: 5px;
   border: none;
-  padding: 5px;
+  padding: 10px 20px;
   cursor: pointer;
   background-color: #7dc3e2;
   color: white;
   font-weight: 600;
+  margin-right: 25px;
 }

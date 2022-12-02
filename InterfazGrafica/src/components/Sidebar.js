@@ -19,19 +19,19 @@ const Sidebar = () => {
                             </li>
                         </Link>
                         <Link to="/admin/usuarios" className='link'>
-                            <li className="sidebarListItem">
+                            <li className="sidebarListItem active">
                                 <FontAwesomeIcon className="sidebarIcon" icon={faUser} />
                                 Usuarios
                             </li>
                         </Link>
                         <Link to="/admin/categorias" className='link'>
-                            <li className="sidebarListItem">
+                            <li className="sidebarListItem active">
                                 <FontAwesomeIcon className="sidebarIcon" icon={faListAlt} />
                                 Categorías
                             </li>
                         </Link>
                         <Link to="/admin/productos" className="Link">
-                            <li className="sidebarListItem">
+                            <li className="sidebarListItem active">
                                 <FontAwesomeIcon className="sidebarIcon" icon={faBasketShopping} />
                                 Productos
                             </li>
