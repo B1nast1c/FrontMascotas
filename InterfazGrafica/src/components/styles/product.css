@@ -1,0 +1,28 @@
+.productUpdateForm,
+.userUpdateContent {
+  display: flex;
+  width: 100%;
+}
+
+.userUpdateContent > * {
+  flex: 1;
+}
+
+.userUpdateItem {
+  width: 75%;
+}
+
+.userUpdateItem > textarea {
+  height: 100px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  margin-right: 5px;
+}
+
+.option > p {
+  margin: unset;
+}

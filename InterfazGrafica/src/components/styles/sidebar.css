@@ -39,6 +39,17 @@
   background-color: rgb(240, 240, 255);
 }
 
+.logout-link {
+  background: #f22e4b !important;
+  color: #f0f0ff;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logout-link:hover {
+  background: #f22e4b69 !important;
+}
+
 .sidebarIcon {
   margin-right: 5px;
   font-size: 20px !important;

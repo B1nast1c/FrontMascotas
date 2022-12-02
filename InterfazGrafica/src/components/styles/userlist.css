@@ -1,5 +1,7 @@
 .userList {
   flex: 4;
+  width: 95%;
+  margin: 0px auto;
 }
 
 .userListUser {
@@ -16,31 +18,48 @@
 }
 
 .userListEdit {
-  border: none;
-  border-radius: 10px;
-  padding: 15px 25px;
+  padding: 0px 25px 0px 0px;
   color: #92bf6b;
   font-weight: 600;
   cursor: pointer;
   margin-right: 20px;
   background: transparent;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
 }
 
 .userListEdit:hover {
-  color: #fbfbff;
-  background-color: #92bf6b;
+  color: #92bf6b82;
 }
 
 .userListDelete {
   color: #e86b6e;
   cursor: pointer;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.userListDelete:hover {
+  color: #e86b6d9e;
 }
 
 .user-title,
 .user-add {
   margin-bottom: 35px;
-  margin-left: 15px;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.user-add {
+  margin-left: 23px;
+}
+
+.user-title {
+  text-align: center;
+}
+
+.scroll,
+.MuiDataGrid-columnsContainer {
+  background: #f0f0ff;
 }
 
 .user-add {
@@ -49,6 +68,7 @@
   padding: 10px 25px;
   border-radius: 7px;
   margin-bottom: 20px;
+  transition: all 0.3s ease;
 }
 
 .user-add:hover {
@@ -66,4 +86,8 @@
 
 .add-container a:hover {
   color: whitesmoke;
+}
+
+.grid {
+  padding: 20px;
 }

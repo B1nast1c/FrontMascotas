@@ -16,12 +16,7 @@
 }
 
 .userListEdit {
-  border: none;
-  background-color: #92bf6b;
-  border-radius: 10px;
-  color: #2f2929;
   cursor: pointer;
-  margin-right: 20px;
 }
 
 .userListEdit:hover {
@@ -31,20 +26,6 @@
 .userListDelete {
   color: #e86b6e;
   cursor: pointer;
-}
-
-.user-title,
-.user-add {
-  margin-bottom: 20px;
-  margin-left: 15px;
-}
-
-.user-add {
-  background: #5f81de;
-  border: unset;
-  padding: 10px 20px;
-  border-radius: 7px;
-  margin-bottom: 10px;
 }
 
 .user-add:hover {
@@ -62,4 +43,8 @@
 
 .add-container a:hover {
   color: whitesmoke;
+}
+
+.grid {
+  padding: 20px;
 }

@@ -1,3 +1,4 @@
+//Este archivo debe eliminarse una vez las peticiones hayan sido implementadas
 export const userData = [
     {
         name: "Jan",
@@ -47,6 +48,27 @@ export const userData = [
         name: "Dec",
         "Active User": 3000,
     },
+]
+
+export const Productos = [
+    {
+        id: 1,
+        name: "Producto",
+        cantidad: 10,
+        detalles: "Detalles UwU",
+        disponible: true,
+        categoria: "Categoria UwU",
+        precio: 500
+    },
+    {
+        id: 2,
+        name: "Producto 2",
+        cantidad: 10,
+        detalles: "Detalles UwU",
+        disponible: false,
+        categoria: "Categoria UwU",
+        precio: 250
+    }
 ]
 
 export const userRows = [

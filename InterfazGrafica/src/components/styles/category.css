@@ -11,3 +11,18 @@
 .update-category-btn {
   background: rgb(146, 191, 107);
 }
+
+.update-category {
+  display: flex;
+  flex: 1;
+}
+
+.userUpdateItem {
+  flex: 1;
+}
+
+.userUpdateItem > input,
+.userUpdateItem > select,
+.userUpdateItem > textarea {
+  width: 75%;
+}

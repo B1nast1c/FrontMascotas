@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const Categorylist = () => {
     const [data, setData] = useState(Categories);
@@ -46,7 +46,10 @@ const Categorylist = () => {
                 return (
                     <div>
                         <Link to={"/admin/categoria/" + params.row.id}>
-                            <button className="userListEdit">Editar</button>
+                            <FontAwesomeIcon
+                                icon={faEdit}
+                                className="userListEdit"
+                            />
                         </Link>
                         <FontAwesomeIcon
                             icon={faTrash}
@@ -70,6 +73,7 @@ const Categorylist = () => {
                 columns={columns}
                 pageSize={8}
                 checkboxSelection
+                className='grid'
             />
         </div>
     )

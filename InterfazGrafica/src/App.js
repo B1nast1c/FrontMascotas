@@ -17,6 +17,9 @@ import AdminCreateuser from './screens/AdminCreateuser';
 import AdminCategorias from './screens/AdminCategorias';
 import AdminCategoriaEditar from './screens/AdminCategoriaEditar';
 import AdminCategoriaCrear from './screens/AdminCategoriaCrear';
+import AdminProductos from './screens/AdminProductos';
+import AdminProductoEditar from './screens/AdminProductoEditar';
+import AdminProductoCrear from './screens/AdminProductoCrear';
 
 
 function App() {
@@ -39,6 +42,9 @@ function App() {
         <Route path="/admin/categorias" element={<AdminCategorias />} />
         <Route path="/admin/categoria/:categoriaid" element={<AdminCategoriaEditar />} />
         <Route path="/admin/categorias/crear" element={<AdminCategoriaCrear />} />
+        <Route path="/admin/productos" element={<AdminProductos />} />
+        <Route path="/admin/producto/:categoriaid" element={<AdminProductoEditar />} />
+        <Route path="/admin/productos/crear" element={<AdminProductoCrear />} />
       </Routes>
     </Router>
   );

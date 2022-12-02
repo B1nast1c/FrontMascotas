@@ -1,11 +1,16 @@
 .newUser {
   flex: 4;
   width: 95%;
-  margin: auto;
+  margin-left: 2%;
 }
 
 .inner-form {
   flex: 4;
+}
+
+.newUserTitle {
+  margin-bottom: 50px;
+  margin-left: 0px !important;
 }
 
 .newUserForm {
@@ -28,19 +33,18 @@
   margin-right: 20px;
 }
 
-.newUserItem > label {
-  margin-bottom: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: rgb(151, 150, 150);
-}
-
-.newUserItem > input {
+.newUserItem > input,
+.newUserItem > select,
+.newUserItem > textarea {
   height: 20px;
   padding: 19px;
   border: 1px solid gray;
   border-radius: 5px;
   width: 75%;
+}
+
+.newUserItem > textarea {
+  height: 100px;
 }
 
 .newUserButton {

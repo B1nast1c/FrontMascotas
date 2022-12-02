@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../styles/createcategory.css'
 
 function AdminCrearCategoria() {
     return (
@@ -11,11 +12,13 @@ function AdminCrearCategoria() {
                             <label>Nombre</label>
                             <input type="text" placeholder="Nombre" />
                         </div>
+                        <button className="newUserButton">Añadir Categoría</button>
+                    </div>
+                    <div className="form-right">
                         <div className="newUserItem">
                             <label>Detalles</label>
                             <input type="text" placeholder="Detalles" />
                         </div>
-                        <button className="newUserButton">Añadir Categoría</button>
                     </div>
                 </form>
             </div>

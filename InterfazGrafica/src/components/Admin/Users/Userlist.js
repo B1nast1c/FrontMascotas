@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Userlist = () => {
     const [data, setData] = useState(userRows);
@@ -52,7 +52,10 @@ const Userlist = () => {
                 return (
                     <div>
                         <Link to={"/admin/usuario/" + params.row.id}>
-                            <button className="userListEdit">Editar</button>
+                            <FontAwesomeIcon
+                                icon={faEdit}
+                                className="userListEdit"
+                            />
                         </Link>
                         <FontAwesomeIcon
                             icon={faTrash}

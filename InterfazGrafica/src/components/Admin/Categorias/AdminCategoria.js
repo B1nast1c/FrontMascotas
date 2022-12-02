@@ -14,7 +14,7 @@ const Category = () => {
                 <div className="userUpdate category-container">
                     <span className="userUpdateTitle">Editar Información</span>
                     <form className="userUpdateForm">
-                        <div className="userUpdateLeft">
+                        <div className="update-category">
                             <div className="userUpdateItem">
                                 <label>Nombre</label>
                                 <input

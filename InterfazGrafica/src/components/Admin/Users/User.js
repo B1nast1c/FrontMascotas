@@ -50,54 +50,58 @@ const User = () => {
                 <div className="userUpdate">
                     <span className="userUpdateTitle">Editar Información</span>
                     <form className="userUpdateForm">
-                        <div className="userUpdateLeft">
-                            <div className="userUpdateItem">
-                                <label>Nombre</label>
-                                <input
-                                    type="text"
-                                    placeholder="Nombre"
-                                    className="userUpdateInput"
-                                />
+                        <div className='user-edit'>
+                            <div className='user-edit-left'>
+                                <div className="userUpdateItem">
+                                    <label>Nombre</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Nombre"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
+                                <div className="userUpdateItem">
+                                    <label>Apellido Paterno</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Apellido"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
+                                <div className="userUpdateItem">
+                                    <label>Apellido Materno</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Apellido"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
                             </div>
-                            <div className="userUpdateItem">
-                                <label>Apellido Paterno</label>
-                                <input
-                                    type="text"
-                                    placeholder="Apellido"
-                                    className="userUpdateInput"
-                                />
-                            </div>
-                            <div className="userUpdateItem">
-                                <label>Apellido Materno</label>
-                                <input
-                                    type="text"
-                                    placeholder="Apellido"
-                                    className="userUpdateInput"
-                                />
-                            </div>
-                            <div className="userUpdateItem">
-                                <label>Telefono</label>
-                                <input
-                                    type="text"
-                                    placeholder="+1 696969"
-                                    className="userUpdateInput"
-                                />
-                            </div>
-                            <div className="userUpdateItem">
-                                <label>Correo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Correo"
-                                    className="userUpdateInput"
-                                />
-                            </div>
-                            <div className="userUpdateItem">
-                                <label>Dirección</label>
-                                <input
-                                    type="text"
-                                    placeholder="Direccion"
-                                    className="userUpdateInput"
-                                />
+                            <div className='user-edit-right'>
+                                <div className="userUpdateItem">
+                                    <label>Telefono</label>
+                                    <input
+                                        type="text"
+                                        placeholder="+1 696969"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
+                                <div className="userUpdateItem">
+                                    <label>Correo</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Correo"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
+                                <div className="userUpdateItem">
+                                    <label>Dirección</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Direccion"
+                                        className="userUpdateInput"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </form>
