@@ -646,11 +646,8 @@ a:hover > .img-thumbnail {
 }
 
 .section-footer .logo-footer {
-  max-height: 40px;
-}
-
-.footer-main .logo-footer {
-  height: 2rem;
+  height: 7rem;
+  color: #fd985b;
 }
 
 .section-footer .title {

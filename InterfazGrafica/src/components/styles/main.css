@@ -9,10 +9,6 @@ pre {
   margin-bottom: 2rem;
 }
 
-.main-header {
-  box-shadow: 0 0 7px rgba(153, 153, 153, 0.3);
-}
-
 .main-header .logo {
   display: inline-block;
   height: 50px;

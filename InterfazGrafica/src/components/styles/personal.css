@@ -3,7 +3,7 @@ body {
   font-size: 14px;
   line-height: 1.8;
   font-weight: normal;
-  background: #fafafa;
+  background: #feefd9;
   color: gray;
 }
 
@@ -24,7 +24,7 @@ a:focus {
 
 .navbar {
   padding: 15px 10px;
-  background: #fff;
+  background: #feefd9;
   border: none;
   border-radius: 0;
   margin-bottom: 40px;
@@ -41,7 +41,7 @@ a:focus {
 
 .wrapper {
   width: 100%;
-  background: #f2f3f4;
+  background: #feefd9;
 }
 
 #sidebar {
@@ -82,9 +82,14 @@ a:focus {
 }
 
 .logo {
-  color: #0d6efd;
+  color: #f29158;
   height: 50px;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  color: #f291589f;
 }
 
 #sidebar ul.components {
@@ -238,7 +243,7 @@ h3 {
 .login-btn {
   width: 100%;
   border-radius: 5px;
-  background: #0d6efd;
+  background: #fd985b;
   border: unset;
   color: #f2f3f4;
   padding: 7px 0px;
@@ -247,7 +252,7 @@ h3 {
 }
 
 .login-btn:hover {
-  background: #0d6dfd99;
+  background: #fd995b95;
 }
 
 .logout-button {
@@ -267,4 +272,19 @@ h3 {
 
 .profile-item {
   margin-bottom: 0px;
+}
+
+.section-header {
+  background: #feefd9;
+}
+
+.icon {
+  color: #fd985b;
+}
+
+.main-header {
+  width: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }

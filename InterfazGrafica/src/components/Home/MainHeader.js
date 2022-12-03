@@ -8,7 +8,7 @@ const MainHeader = () => {
                 <div className="row align-items-center" style={{ minHeight: "520px" }}>
                     <div className="col-lg-6 order-lg-1">
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 main-header">
                         <article className="my-5 ms-lg-5">
                             <h1 className="display-4">
                                 Tus marcas favoritas están en <br />
@@ -22,6 +22,9 @@ const MainHeader = () => {
                             >
                                 {" "}¡Quiero ver sus productos!{" "}
                             </Link>
+                        </article>
+                        <article className="my-5 ms-lg-5">
+                            <img src='https://i.postimg.cc/L40mGdc6/brown-dog-cartoon-free-vector-removebg-preview.png' alt='Perro' />
                         </article>
                     </div>
                 </div>
