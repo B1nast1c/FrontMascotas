@@ -2,8 +2,13 @@ import React from 'react'
 import './styles/sidebar.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBasketShopping, faDoorOpen, faHome, faLitecoinSign, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBasketShopping, faDoorOpen, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faListAlt } from '@fortawesome/free-regular-svg-icons';
+
+const adminLogout = () => {
+    localStorage.clear()
+    window.location.reload()
+}
 
 const Sidebar = () => {
     return (
@@ -38,7 +43,7 @@ const Sidebar = () => {
                         </Link>
                         <Link to="/" className="Link">
                             <li className="sidebarListItem active logout-link">
-                                <FontAwesomeIcon className="sidebarIcon" icon={faDoorOpen} />
+                                <FontAwesomeIcon className="sidebarIcon" icon={faDoorOpen} onClick={() => adminLogout()} />
                                 Logout
                             </li>
                         </Link>
