@@ -20,6 +20,8 @@ import AdminCategoriaCrear from './screens/AdminCategoriaCrear';
 import AdminProductos from './screens/AdminProductos';
 import AdminProductoEditar from './screens/AdminProductoEditar';
 import AdminProductoCrear from './screens/AdminProductoCrear';
+import UserProfile from './screens/UserProfile';
+import ProtectedRoute from './components/scripts/ProtectedRoute';
 
 
 function App() {
@@ -34,17 +36,18 @@ function App() {
         <Route path="/juguetes" element={<Juguetes />} />
         <Route path="/register" element={<Register />} />
         <Route path="/producto" element={<Producto />} />
-        <Route path="/carrito" element={<Carrito />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/usuarios" element={<Adminusers />} />
-        <Route path="/admin/usuario/:usuarioid" element={<AdminUserScreen />} />
-        <Route path="/admin/usuarios/crear" element={<AdminCreateuser />} />
-        <Route path="/admin/categorias" element={<AdminCategorias />} />
-        <Route path="/admin/categoria/:categoriaid" element={<AdminCategoriaEditar />} />
-        <Route path="/admin/categorias/crear" element={<AdminCategoriaCrear />} />
-        <Route path="/admin/productos" element={<AdminProductos />} />
-        <Route path="/admin/producto/:categoriaid" element={<AdminProductoEditar />} />
-        <Route path="/admin/productos/crear" element={<AdminProductoCrear />} />
+        <Route exact path="/carrito" element={<Carrito />} />
+        <Route exact path="/admin" element={<AdminDashboard />} />
+        <Route exact path="/admin/usuarios" element={<ProtectedRoute><Adminusers /></ProtectedRoute>} /> //Rutas protegidas por autenticacion
+        <Route exact path="/admin/usuario/:usuarioid" element={<ProtectedRoute><AdminUserScreen /></ProtectedRoute>} />
+        <Route exact path="/admin/usuarios/crear" element={<ProtectedRoute><AdminCreateuser /></ProtectedRoute>} />
+        <Route exact path="/admin/categorias" element={<ProtectedRoute><AdminCategorias /></ProtectedRoute>} />
+        <Route exact path="/admin/categoria/:categoriaid" element={<ProtectedRoute><AdminCategoriaEditar /></ProtectedRoute>} />
+        <Route exact path="/admin/categorias/crear" element={<ProtectedRoute><AdminCategoriaCrear /></ProtectedRoute>} />
+        <Route exact path="/admin/productos" element={<ProtectedRoute><AdminProductos /></ProtectedRoute>} />
+        <Route exact path="/admin/producto/:categoriaid" element={<ProtectedRoute><AdminProductoEditar /></ProtectedRoute>} />
+        <Route exact path="/admin/productos/crear" element={<ProtectedRoute><AdminProductoCrear /></ProtectedRoute>} />
+        <Route exact path="/perfil" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

@@ -234,3 +234,37 @@ h3 {
   color: #9da1a7;
   background-color: #f9f9f9;
 }
+
+.login-btn {
+  width: 100%;
+  border-radius: 5px;
+  background: #0d6efd;
+  border: unset;
+  color: #f2f3f4;
+  padding: 7px 0px;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: #0d6dfd99;
+}
+
+.logout-button {
+  width: 100%;
+  border-radius: 5px;
+  background: #f22e4b;
+  border: unset;
+  color: #f2f3f4;
+  padding: 7px 15px;
+  margin-top: 25px;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: #f22e4b9d;
+}
+
+.profile-item {
+  margin-bottom: 0px;
+}

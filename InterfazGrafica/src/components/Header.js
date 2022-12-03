@@ -1,9 +1,36 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faDog } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
-import React from 'react'
+import React, { Component } from 'react'
+import axios from 'axios'
+
+//Inicio Petición Login 
+const userLogout = () => { //Elimina los datos de la localstorage
+    localStorage.clear()
+    window.location.reload()
+}
+
+const userLogin = (username, password, event) => {
+
+    const loginData = {
+        username: username,
+        password: password
+    }
+
+    axios.post("http://localhost:8080/generate-token", loginData)
+        .then(data => {
+            localStorage.setItem("token", "Bearer ".concat(data.data.token)) // El token debe empezar con Bearer (espacio) >:v
+            localStorage.setItem("username", username.replace(/["]+/g, ''))
+        })
+        .catch(
+            err => console.log(err)
+        )
+    window.location.reload()
+}
 
 const Header = () => {
+    const currentUser = localStorage.getItem("username") //Datos generales de la interfaz
+
     return (
         <div className="section-header">
             <div className="header-main border-bottom">
@@ -44,42 +71,11 @@ const Header = () => {
                                         </div>
                                         <div className="text d-none d-lg-block">
                                             <small className="text-muted">Bienvenido </small> <br />
-                                            <span className="text-dark">Usuario... </span>
+                                            <span className="text-dark">{currentUser}</span>
                                         </div>
                                     </Link>
-                                    <ul className="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <form className="px-4 py-3">
-                                                <div className="mb-3">
-                                                    <label className="form-label">Nombre de Usuario</label>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        placeholder="Usuario"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <label className="form-label">Contraseña</label>
-                                                    <input
-                                                        type="password"
-                                                        className="form-control"
-                                                        placeholder="Contraseña"
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <button className="form-submit">Ingresar</button>
-                                                </div>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <hr className="dropdown-divider" />
-                                        </li>
-                                        <li>
-                                            <a className="dropdown-item" href="/register">
-                                                ¿Primera vez?, ¡Registrate!
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <Logout />
+                                    <Dropdown />
                                 </div>
                             </div>
                         </div>
@@ -133,6 +129,102 @@ const Header = () => {
         </div>
     )
 }
+
+class Logout extends Component {
+    render() {
+        return (
+            <div>
+                {
+                    localStorage.getItem("username") != null ? (
+                        <button className="logout-button" onClick={() => userLogout()}>Cerrar Sesion</button>
+                    ) : null
+                }
+            </div>
+        )
+    }
+}
+
+class Dropdown extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: ""
+        }
+
+        this.handleInput = this.handleInput.bind(this)
+    }
+
+    handleInput = (event) => {
+        const { name, value } = event.target
+        this.setState({
+            ...this.state,
+            [name]: value
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                {
+                    localStorage.getItem("username") === null ? (
+                        <ul className="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <form className="px-4 py-3">
+                                    <div className="mb-3">
+                                        <label className="form-label">Nombre de Usuario</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Usuario"
+                                            value={this.state.username}
+                                            onChange={this.handleInput}
+                                            name="username"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="form-label">Contraseña</label>
+                                        <input
+                                            type="password"
+                                            className="form-control"
+                                            placeholder="Contraseña"
+                                            value={this.state.password}
+                                            onChange={this.handleInput}
+                                            name="password"
+                                        />
+                                    </div>
+                                    <div>
+                                        <button className="form-submit login-btn" onClick={(e) => {
+                                            userLogin(this.state.username, this.state.password, e)
+                                        }
+                                        }>Ingresar</button>
+                                    </div>
+                                </form>
+                            </li>
+                            <li>
+                                <hr className="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a className="dropdown-item" href="/register">
+                                    ¿Primera vez?, ¡Registrate!
+                                </a>
+                            </li>
+                        </ul>
+                    ) : <Link to="/perfil">
+                        <ul className="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <p className="dropdown-item profile-item">
+                                    Ver Perfil
+                                </p>
+                            </li>
+                        </ul>
+                    </Link>
+                }
+            </div>
+        )
+    }
+}
+
 
 export default Header
 

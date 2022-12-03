@@ -1,0 +1,52 @@
+.bordlength {
+  margin: auto;
+  width: 75vw;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.picz {
+  display: none;
+  float: left;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.user-profile {
+  border-radius: 50%;
+  width: 75%;
+  border: solid 3px #0d6efd;
+  padding: 3px;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.column-info {
+  display: flex;
+  gap: 5%;
+}
+
+.user-info .title {
+  font-size: 35px;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 1.005rem;
+  color: #b2a1a7;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.info {
+  margin-bottom: 0.25rem;
+  margin-top: 0px;
+  margin-left: 1rem;
+}
