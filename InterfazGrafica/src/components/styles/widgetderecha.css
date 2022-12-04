@@ -36,6 +36,7 @@
 .widgetLgDate,
 .widgetLgAmount {
   font-weight: 300;
+  text-align: left;
 }
 
 .widgetLgButton {
@@ -44,7 +45,18 @@
   border-radius: 10px;
 }
 
-.widgetLgButton.Activo {
+.widgetLgButton.true {
   background-color: #e5faf2;
   color: #3bb077;
+}
+
+.widgetLgButton.false {
+  background-color: #e7a6a7;
+  color: #c93e40;
+}
+
+.row-container > * {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }

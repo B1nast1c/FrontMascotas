@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "../components/styles/profile.css"
 import axios from 'axios'
 
-const getUserInfor = (profile, setProfile) => {
+const getUserInfor = (setProfile) => {
     const token = localStorage.getItem("token")
     const headers = {
         "Content-Type": "application/json",
@@ -11,13 +11,15 @@ const getUserInfor = (profile, setProfile) => {
     }
     axios.get("http://localhost:8080/actual-usuario", { headers: headers }) //Obtener datos de un usuario
         .then(data => {
+            console.log(data.data)
             setProfile({
                 nombre: data.data.username,
                 a_paterno: data.data.apellidoPaterno,
                 a_materno: data.data.apellidoMaterno,
                 edad: data.data.edad,
                 correo: data.data.correo,
-                direccion: data.data.direccion
+                direccion: data.data.direccion,
+                rol: data.data.rol.id
             })
         })
         .catch(err => console.log(err))
@@ -32,12 +34,13 @@ const Profile = () => {
         a_materno: '',
         edad: '',
         correo: '',
-        direccion: ''
+        direccion: '',
+        rol: 0
     })
 
     useEffect(() => {
-        getUserInfor(profile, setProfile)
-    }, [profile, setProfile]);
+        getUserInfor(setProfile)
+    }, [setProfile]);
 
     return (
         <div className="test-p bordlength columns has-background-warning">

@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { userRows } from "../../scripts/data";
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
@@ -15,10 +14,12 @@ const getUsers = (setData) => {
         'Access-Control-Allow-Origin': "*"
     }
 
+    console.log(token)
+
     axios
-        .get("http://localhost:8080/categorias/", { headers: headers })
+        .get("http://localhost:8080/usuarios/rol/2", { headers: headers }) //Editar usuarios normales SOLAMENTE
         .then(data => {
-            setData(data.data)
+            setData(data.data.filter(user => user.activo)) //Filtra si se encuentra activo XD
         })
         .catch(err => console.error(err))
 
@@ -44,7 +45,11 @@ const handleDelete = (id) => {
 
 
 const Userlist = () => {
-    const [data, setData] = useState(userRows);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        getUsers(setData)
+    }, [setData]);
 
     const columns = [
         {
@@ -87,7 +92,7 @@ const Userlist = () => {
         {
             field: "correo",
             headerName: "Correo",
-            width: 160,
+            width: 200,
             renderCell: (params) => {
                 return (
                     <div className="userListUser">

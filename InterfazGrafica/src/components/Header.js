@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faUser, faDog } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
-import React, { Component } from 'react'
 import axios from 'axios'
+import React, { Component, useEffect } from 'react'
+
 
 //Inicio Petición Login 
 const userLogout = () => { //Elimina los datos de la localstorage
@@ -10,7 +11,7 @@ const userLogout = () => { //Elimina los datos de la localstorage
     window.location.reload()
 }
 
-const userLogin = (username, password, event) => {
+const userLogin = (username, password,) => {
 
     const loginData = {
         username: username,
@@ -28,8 +29,30 @@ const userLogin = (username, password, event) => {
     window.location.reload()
 }
 
+
+const getUserInfor = () => {
+    const token = localStorage.getItem("token")
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": token,
+        'Access-Control-Allow-Origin': "*"
+    }
+    axios.get("http://localhost:8080/actual-usuario", { headers: headers }) //Obtener datos de un usuario
+        .then(data => {
+            localStorage.setItem("rol", data.data.rol.id)
+        })
+        .catch(err => console.log(err))
+
+}
+
 const Header = () => {
     const currentUser = localStorage.getItem("username") //Datos generales de la interfaz
+
+    useEffect(() => {
+        if (localStorage.getItem("token") != null) {
+            getUserInfor()
+        }
+    }, []);
 
     return (
         <div className="section-header">
@@ -210,15 +233,33 @@ class Dropdown extends Component {
                                 </a>
                             </li>
                         </ul>
-                    ) : <Link to="/perfil">
+                    ) : localStorage.getItem("rol") === '2' ? (
                         <ul className="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <p className="dropdown-item profile-item">
-                                    Ver Perfil
-                                </p>
-                            </li>
+                            <Link to="/perfil">
+                                <li>
+                                    <p className="dropdown-item profile-item">
+                                        Ver Perfil
+                                    </p>
+                                </li>
+                            </Link>
                         </ul>
-                    </Link>
+                    ) :
+                        <ul className="dropdown-menu dropdown-menu-end">
+                            <Link to="/perfil">
+                                <li>
+                                    <p className="dropdown-item profile-item">
+                                        Ver Perfil
+                                    </p>
+                                </li>
+                            </Link>
+                            <Link to="/admin">
+                                <li>
+                                    <p className="dropdown-item profile-item">
+                                        Panel de Administrador
+                                    </p>
+                                </li>
+                            </Link>
+                        </ul>
                 }
             </div>
         )
