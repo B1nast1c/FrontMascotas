@@ -1,17 +1,53 @@
-import React, { useState } from 'react'
-import { Productos } from "../../scripts/data";
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
+const getProducts = (setData) => { //Obtencion todos los productos
+  const token = localStorage.getItem("token")
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": token,
+    'Access-Control-Allow-Origin': "*"
+  }
+
+  axios
+    .get("http://localhost:8080/productos/", { headers: headers })
+    .then(data => {
+      setData(data.data)
+      console.log(data.data)
+    })
+    .catch(err => console.error(err))
+
+}
+
+const handleDelete = (id) => {
+  const token = localStorage.getItem("token")
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": token,
+    'Access-Control-Allow-Origin': "*"
+  }
+
+  axios
+    .delete("http://localhost:8080/productos/" + id, { headers: headers })
+    .then(data => {
+      console.log(data)
+    })
+    .catch(err => console.error(err))
+
+  window.location.reload()
+}
 
 const Productlist = () => {
-  const [data, setData] = useState(Productos);
+  const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  useEffect(() => {
+    getProducts(setData)
+  }, [setData]);
 
   const columns = [
     {
