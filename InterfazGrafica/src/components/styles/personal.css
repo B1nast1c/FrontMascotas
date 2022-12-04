@@ -184,7 +184,8 @@ a:hover {
 }
 
 .content {
-  padding: 7rem 0;
+  padding: 5rem 0;
+  background: rgb(254, 239, 217);
 }
 
 h2 {
@@ -287,4 +288,21 @@ h3 {
   display: flex;
   align-content: center;
   align-items: center;
+}
+
+.register-img {
+  width: 100%;
+}
+
+.register-header {
+  color: #f29158;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
+.register-form {
+  background: rgb(249, 249, 249);
+  padding: 2rem 3rem;
+  border-radius: 20px;
 }
