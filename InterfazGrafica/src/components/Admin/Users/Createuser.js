@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import '../../styles/user.css'
 
+//Los admin se crean en la misma DB
+
 const userRegister = (userData) => { //Elimina los datos de la localstorage
 
     const token = localStorage.getItem("token")
