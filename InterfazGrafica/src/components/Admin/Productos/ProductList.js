@@ -63,9 +63,9 @@ const Productlist = () => {
       },
     },
     {
-      field: "canidad",
-      headerName: "Cantidad",
-      width: 200,
+      field: "cantidad",
+      headerName: "nº",
+      width: 100,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -89,7 +89,7 @@ const Productlist = () => {
     {
       field: "disponible",
       headerName: "Disponibilidad",
-      width: 200,
+      width: 175,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -113,7 +113,7 @@ const Productlist = () => {
     {
       field: "precio",
       headerName: "Precio",
-      width: 200,
+      width: 120,
       renderCell: (params) => {
         return (
           <div className="userListUser">
@@ -123,9 +123,9 @@ const Productlist = () => {
       },
     },
     {
-      field: "action",
-      headerName: "Gestionar",
-      width: 200,
+      field: " ",
+      headerName: "",
+      width: 100,
       renderCell: (params) => {
         return (
           <div>
