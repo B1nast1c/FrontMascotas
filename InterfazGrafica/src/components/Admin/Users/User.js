@@ -1,10 +1,62 @@
-import { faBookOpenReader, faCalendar, faMailForward, faMobilePhone, } from '@fortawesome/free-solid-svg-icons';
+import { faBookOpenReader, faCalendar, faMailForward, faMapSigns, faMobilePhone, } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Link, useParams } from "react-router-dom";
 import '../../styles/user.css'
+import axios from 'axios';
+
+//Falta el PUT DEL USUARIO
+
+const getUser = (id, setFixedData) => {
+    const token = localStorage.getItem("token")
+    const headers = {
+        "Content-Type": "application/json",
+        "Authorization": token,
+        'Access-Control-Allow-Origin': "*"
+    }
+
+    axios
+        .get("http://localhost:8080/usuarios/" + id, { headers: headers })
+        .then(data => {
+            setFixedData(data.data)
+            console.log(id)
+        })
+        .catch(err => console.error(err))
+
+}
 
 const User = () => {
+    let { usuarioid } = useParams()
+    const [data, setData] = useState({
+        username: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        direccion: "",
+        correo: "",
+    })
+
+    const [fixedData, setFixedData] = useState({
+        username: "",
+        apellidoPaterno: "",
+        apellidoMaterno: "",
+        edad: "",
+        direccion: "",
+        correo: "",
+        password: "",
+    })
+
+    useEffect(() => {
+        getUser(usuarioid, setFixedData)
+    }, [usuarioid, setFixedData]);
+
+    const handleInput = (event) => {
+        const { name, value } = event.target
+        setData({
+            ...data,
+            [name]: value
+        })
+    }
+
     return (
         <div className="user">
             <div className="userTitleContainer">
@@ -17,33 +69,29 @@ const User = () => {
                 <div className="userShow">
                     <div className="userShowTop">
                         <img
-                            src="https://pm1.narvii.com/8148/d996aa73fec3a5b961832dc864344cc5a0a5751cr1-1440-1080v2_hq.jpg"
+                            src="https://i.pinimg.com/564x/d2/94/aa/d294aad7a18ce8f1d0a6a57fdca7f4a0.jpg"
                             alt=""
                             className="userShowImg"
                         />
                         <div className="userShowTopTitle">
-                            <span className="userShowUsername">Nombres y Apellidos</span>
+                            <span className="userShowUsername"> {fixedData.username + " " + fixedData.apellidoPaterno + " " + fixedData.apellidoMaterno} </span>
                             <span className="userShowUserTitle">Usuario</span>
                         </div>
                     </div>
                     <div className="userShowBottom">
                         <span className="userShowTitle">Detalles de la Cuenta</span>
                         <div className="userShowInfo">
-                            <FontAwesomeIcon icon={faBookOpenReader} className="userShowIcon" />
-                            <span className="userShowInfoTitle">Usuario</span>
-                        </div>
-                        <div className="userShowInfo">
                             <FontAwesomeIcon icon={faCalendar} className="userShowIcon" />
-                            <span className="userShowInfoTitle">Edad</span>
+                            <span className="userShowInfoTitle">{fixedData.edad + " años"}</span>
                         </div>
                         <span className="userShowTitle">Detalles de Contacto</span>
                         <div className="userShowInfo">
-                            <FontAwesomeIcon icon={faMobilePhone} className="userShowIcon" />
-                            <span className="userShowInfoTitle">telefono</span>
+                            <FontAwesomeIcon icon={faMailForward} className="userShowIcon" />
+                            <span className="userShowInfoTitle">{fixedData.correo}</span>
                         </div>
                         <div className="userShowInfo">
-                            <FontAwesomeIcon icon={faMailForward} className="userShowIcon" />
-                            <span className="userShowInfoTitle">correo</span>
+                            <FontAwesomeIcon icon={faMapSigns} className="userShowIcon" />
+                            <span className="userShowInfoTitle">{fixedData.direccion}</span>
                         </div>
                     </div>
                 </div>
@@ -58,40 +106,44 @@ const User = () => {
                                         type="text"
                                         placeholder="Nombre"
                                         className="userUpdateInput"
+                                        name='username'
+                                        value={data.username}
+                                        onChange={handleInput}
                                     />
                                 </div>
                                 <div className="userUpdateItem">
                                     <label>Apellido Paterno</label>
                                     <input
                                         type="text"
-                                        placeholder="Apellido"
+                                        placeholder="Apellido Paterno"
                                         className="userUpdateInput"
+                                        name='apellidoPaterno'
+                                        value={data.apellidoPaterno}
+                                        onChange={handleInput}
                                     />
                                 </div>
                                 <div className="userUpdateItem">
                                     <label>Apellido Materno</label>
                                     <input
                                         type="text"
-                                        placeholder="Apellido"
+                                        placeholder="Apellido Materno"
                                         className="userUpdateInput"
+                                        name='apellidoMaterno'
+                                        value={data.apellidoMaterno}
+                                        onChange={handleInput}
                                     />
                                 </div>
                             </div>
                             <div className='user-edit-right'>
-                                <div className="userUpdateItem">
-                                    <label>Telefono</label>
-                                    <input
-                                        type="text"
-                                        placeholder="+1 696969"
-                                        className="userUpdateInput"
-                                    />
-                                </div>
                                 <div className="userUpdateItem">
                                     <label>Correo</label>
                                     <input
                                         type="text"
                                         placeholder="Correo"
                                         className="userUpdateInput"
+                                        name='correo'
+                                        value={data.correo}
+                                        onChange={handleInput}
                                     />
                                 </div>
                                 <div className="userUpdateItem">
@@ -100,6 +152,9 @@ const User = () => {
                                         type="text"
                                         placeholder="Direccion"
                                         className="userUpdateInput"
+                                        name='direccion'
+                                        value={data.direccion}
+                                        onChange={handleInput}
                                     />
                                 </div>
                             </div>

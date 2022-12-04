@@ -115,7 +115,7 @@ const Userlist = () => {
             renderCell: (params) => {
                 return (
                     <div>
-                        <Link to={"/admin/usuario/" + params.row.id}>
+                        <Link to={"/admin/usuario/" + params.row.username}>
                             <FontAwesomeIcon
                                 icon={faEdit}
                                 className="userListEdit"

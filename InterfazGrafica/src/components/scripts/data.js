@@ -74,7 +74,7 @@ export const Productos = [
 export const userRows = [
     {
         id: 1,
-        username: "Jon Snow",
+        username: "Mamarre",
         avatar:
             "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
         email: "jon@gmail.com",

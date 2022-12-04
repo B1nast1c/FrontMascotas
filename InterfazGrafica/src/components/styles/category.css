@@ -15,6 +15,9 @@
 .update-category {
   display: flex;
   flex: 1;
+  padding: 0 50px;
+  gap: 10%;
+  text-align: center;
 }
 
 .userUpdateItem {
@@ -24,5 +27,6 @@
 .userUpdateItem > input,
 .userUpdateItem > select,
 .userUpdateItem > textarea {
-  width: 75%;
+  width: 100%;
+  text-align: center;
 }

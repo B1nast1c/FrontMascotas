@@ -2,6 +2,7 @@
 .userUpdateContent {
   display: flex;
   width: 100%;
+  text-align: -webkit-center;
 }
 
 .userUpdateContent > * {
