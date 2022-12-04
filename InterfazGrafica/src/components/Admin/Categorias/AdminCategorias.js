@@ -74,9 +74,9 @@ const Categorylist = () => {
             },
         },
         {
-            field: "action",
-            headerName: "Gestionar",
-            width: 200,
+            field: " ",
+            headerName: "",
+            width: 100,
             renderCell: (params) => {
                 return (
                     <div>
