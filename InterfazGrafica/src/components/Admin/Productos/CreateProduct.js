@@ -50,7 +50,8 @@ const createProduct = (producto, e) => {
 };
 
 const AddProduct = () => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([])
+    const [category, setCategory] = useState("");
 
     useEffect(() => {
         getCategories(setData);
@@ -90,14 +91,12 @@ const AddProduct = () => {
                             />
                         </div>
                         <div className="newUserItem">
-                            <label>Categoría</label>
-                            <select onChange={handleInput} name="categoria" value={producto.categoria}>
+                            <label>Categoría Seleccionada: </label>
+                            <select onChange={handleInput} name="categoria" value={producto.categoria || ''}>
                                 {
-                                    data.map((item, id) => {
-                                        return (
-                                            <option key={id} value={item.id}>{item.nombre}</option>
-                                        )
-                                    })
+                                    data.map((item, id) =>
+                                        <option key={id} value={item.id}>{item.nombre}</option>
+                                    )
                                 }
                             </select>
                         </div>

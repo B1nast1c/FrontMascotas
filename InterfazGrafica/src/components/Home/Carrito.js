@@ -25,6 +25,11 @@ export const Carrito = ({ product }) => {
             })
     }
 
+    const agregarCarrito = () => {
+
+    }
+
+
     useEffect(() => {
         getImage(setData)
     }, [setData]);
@@ -41,19 +46,13 @@ export const Carrito = ({ product }) => {
                     </Link>
                     <div className="rating-wrap">
                         <ul className="rating-stars">
-                            <li className="stars-active" style={{ width: "90%" }}>
-                                <img alt="" />
-                            </li>
-                            <li>
-                                <img alt="" />
-                            </li>
                         </ul>
                     </div>
                 </div>
                 <div className="bottom-wrap">
-                    <Link to="carrito" className="btn btn-primary float-end">
+                    <button className="btn btn-primary float-end" onClick={() => agregarCarrito()}>
                         <FontAwesomeIcon icon={faShoppingCart} />
-                    </Link>
+                    </button>
                     <div className="price-wrap lh-sm">
                         <strong className="price"> {product.monto} </strong> <br />
                         <small className="text-muted"> {product.producto.detalles} </small>

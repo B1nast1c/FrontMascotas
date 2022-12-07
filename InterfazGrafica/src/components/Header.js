@@ -11,12 +11,15 @@ const userLogout = () => { //Elimina los datos de la localstorage
     window.location.reload()
 }
 
-const userLogin = (username, password,) => {
+const userLogin = (username, password, e) => {
+    e.preventDefault();
+
 
     const loginData = {
         username: username,
         password: password
     }
+
 
     axios.post("http://localhost:8080/generate-token", loginData)
         .then(data => {
@@ -26,7 +29,7 @@ const userLogin = (username, password,) => {
         .catch(
             err => console.log(err)
         )
-    window.location.reload()
+    // window.location.reload()
 }
 
 
@@ -37,6 +40,7 @@ const getUserInfor = () => {
         "Authorization": token,
         'Access-Control-Allow-Origin': "*"
     }
+
     axios.get("http://localhost:8080/actual-usuario", { headers: headers }) //Obtener datos de un usuario
         .then(data => {
             localStorage.setItem("rol", data.data.rol.id)
@@ -233,7 +237,7 @@ class Dropdown extends Component {
                                 </a>
                             </li>
                         </ul>
-                    ) : localStorage.getItem("rol") === '2' ? (
+                    ) : localStorage.getItem("rol") == 2 ? (
                         <ul className="dropdown-menu dropdown-menu-end">
                             <Link to="/perfil">
                                 <li>

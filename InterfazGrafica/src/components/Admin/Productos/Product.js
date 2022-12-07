@@ -10,6 +10,9 @@ import { Link, useParams } from "react-router-dom";
 import "../../styles/product.css";
 import axios from "axios";
 
+
+//Editarlo
+
 const getCategories = (setData) => {
     const token = localStorage.getItem("token");
     const headers = {
@@ -45,6 +48,8 @@ const getProducto = (id, setFixedData) => {
 const User = () => { //Producto >:v
     let { productoid } = useParams()
     const [categories, setCategories] = useState([]);
+    const [category, setCategory] = useState("");
+
 
     const [data, setData] = useState({
         monto: '',
@@ -103,7 +108,11 @@ const User = () => { //Producto >:v
             ...data,
             [name]: value,
         })
-        console.log(data)
+    }
+
+    const handleSelected = (event) => {
+        setCategory(event.target.value)
+        console.log(category)
     }
 
     const updateProducto = (e) => {
@@ -199,13 +208,11 @@ const User = () => { //Producto >:v
                                 <div className="userUpdateItem">
                                     <label>Categoria</label>
 
-                                    <select className="product-input" name="categoria" value={fixedData.producto.categoria.id} onChange={handleInput}>
+                                    <select className="product-input" name="categoria" value={category} onChange={handleSelected}>
                                         {
-                                            categories.map((item, id) => {
-                                                return (
-                                                    <option key={id} value={item.id}>{item.nombre}</option>
-                                                )
-                                            })
+                                            categories.map((item, id) =>
+                                                <option key={id} value={item.id}>{item.nombre}</option>
+                                            )
                                         }
                                     </select>
                                 </div>

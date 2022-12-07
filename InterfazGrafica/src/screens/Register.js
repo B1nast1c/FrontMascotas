@@ -25,8 +25,17 @@ const userRegister = (userData, navigate) => { //Elimina los datos de la localst
     }
 
     axios
-        .post("http://localhost:8080/usuarios/", user)
-        .then(data => console.log(data))
+        .post("http://localhost:8080/usuarios/", user) //Creacion User
+        .then(data => {
+            console.log(data.data)
+            const carrito = {
+                usuario: user
+            }
+            axios
+                .post("http://localhost:8080/carrito/", carrito)
+                .then(data => console.log("Carrito creado", data))
+                .catch(err => console.error(err))
+        })
         .catch(err => console.log(err))
     navigate("/")
 }

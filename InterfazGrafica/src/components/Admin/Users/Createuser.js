@@ -4,7 +4,8 @@ import '../../styles/user.css'
 
 //Los admin se crean en la misma DB
 
-const userRegister = (userData) => { //Elimina los datos de la localstorage
+const userRegister = (userData, e) => { //Elimina los datos de la localstorage
+    e.preventDefault();
 
     const token = localStorage.getItem("token")
     const headers = {
@@ -29,12 +30,20 @@ const userRegister = (userData) => { //Elimina los datos de la localstorage
         rol: {
             id: 2,
             rolNombre: "NORMAL",
-        }
+        },
     }
 
     axios
-        .post("http://localhost:8080/usuarios/", user, { headers: headers })
-        .then(data => console.log(data))
+        .post("http://localhost:8080/usuarios/", user)
+        .then(data => {
+            const carrito = {
+                usuario: user
+            }
+            axios
+                .post("http://localhost:8080/carrito/", carrito, { headers: headers })
+                .then(data => console.log("Carrito creado", data))
+                .catch(err => console.error(err))
+        })
         .catch(err => console.log(err))
 }
 
@@ -64,7 +73,7 @@ const Adduser = () => {
         <div className="inner-form">
             <div className="newUser">
                 <h1 className="newUserTitle">Agregar Nuevo Usuario</h1>
-                <form className="newUserForm" onSubmit={() => userRegister(user)}>
+                <form className="newUserForm" onSubmit={(e) => userRegister(user, e)}>
                     <div className="form-left">
                         <div className="newUserItem">
                             <label>Nombre</label>
