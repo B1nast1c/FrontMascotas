@@ -129,7 +129,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div>
-            <Link to={"/admin/producto/" + params.row.id}>
+            <Link to={"/admin/producto/" + params.row.producto.id}>
               <FontAwesomeIcon
                 icon={faEdit}
                 className="userListEdit"

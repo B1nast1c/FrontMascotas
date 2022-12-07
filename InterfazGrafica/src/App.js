@@ -38,7 +38,7 @@ function App() {
         <Route path="/producto" element={<Producto />} />
         <Route exact path="/carrito" element={<Carrito />} />
         <Route exact path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-        <Route exact path="/admin/usuarios" element={<ProtectedRoute><Adminusers /></ProtectedRoute>} /> //Rutas protegidas por autenticacion
+        <Route exact path="/admin/usuarios" element={<ProtectedRoute><Adminusers /></ProtectedRoute>} />
         <Route exact path="/admin/usuario/:usuarioid" element={<ProtectedRoute><AdminUserScreen /></ProtectedRoute>} />
         <Route exact path="/admin/usuarios/crear" element={<ProtectedRoute><AdminCreateuser /></ProtectedRoute>} />
         <Route exact path="/admin/categorias" element={<ProtectedRoute><AdminCategorias /></ProtectedRoute>} />

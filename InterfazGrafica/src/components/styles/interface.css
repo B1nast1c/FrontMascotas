@@ -30,6 +30,7 @@ a .title:hover {
 .img-wrap img {
   -o-object-fit: cover;
   object-fit: cover;
+  margin-top: 30px;
 }
 
 a:hover > .img-thumbnail {
@@ -1716,10 +1717,11 @@ ul.row {
 }
 
 .gallery-wrap .img-big-wrap img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90%;
+  max-height: 90%;
   height: auto;
   cursor: zoom-in;
+  margin-top: 25px;
 }
 
 .item-option-select {

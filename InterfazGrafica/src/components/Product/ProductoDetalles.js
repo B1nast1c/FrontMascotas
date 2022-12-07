@@ -17,7 +17,9 @@ const ProductoDetalles = () => {
     }
 
     const location = useLocation()
-    const { producto } = location.state
+    const { producto, imagen } = location.state
+    console.log(location.state)
+
 
     return (
         <section className="padding-y bg-white shadow-sm">
@@ -26,7 +28,7 @@ const ProductoDetalles = () => {
                     <aside className="col-lg-5">
                         <article className="gallery-wrap">
                             <p className="img-big-wrap">
-                                <img alt="" className="rounded" />
+                                <img src={`data:image/jpeg;base64,${imagen}`} alt="imagenProducto" className="rounded" />
                             </p>
                         </article>
                     </aside>
