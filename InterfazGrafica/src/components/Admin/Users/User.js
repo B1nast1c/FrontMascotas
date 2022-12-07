@@ -1,4 +1,4 @@
-import { faBookOpenReader, faCalendar, faMailForward, faMapSigns, faMobilePhone, } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faMailForward, faMapSigns } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom";
@@ -19,10 +19,8 @@ const getUser = (id, setFixedData) => {
         .get("http://localhost:8080/usuarios/" + id, { headers: headers })
         .then(data => {
             setFixedData(data.data)
-            console.log(id)
         })
         .catch(err => console.error(err))
-
 }
 
 const User = () => {
@@ -36,6 +34,7 @@ const User = () => {
     })
 
     const [fixedData, setFixedData] = useState({
+        id: 0,
         username: "",
         apellidoPaterno: "",
         apellidoMaterno: "",
@@ -57,13 +56,40 @@ const User = () => {
         })
     }
 
+    const updateUser = () => {
+        const updated = {
+            username: fixedData.username,
+            apellidoPaterno: fixedData.apellidoPaterno,
+            apellidoMaterno: fixedData.apellidoMaterno,
+            direccion: fixedData.direccion,
+            correo: fixedData.correo,
+        }
+
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
+        console.log(fixedData.id)
+
+        axios
+            .put("http://localhost:8080/usuarios/" + fixedData.id, updated, { headers: headers })
+            .then(data => {
+                console.log(data.data) //Ver que haya modificado
+            })
+            .catch(err => console.error(err))
+
+    }
+
     return (
         <div className="user">
             <div className="userTitleContainer">
                 <h1 className="userTitle">Editar Usuario</h1>
                 <Link to="/admin/usuarios">
-                    <button className="userAddButton">Confirmar</button>
                 </Link>
+                <button className="userAddButton" onClick={() => updateUser()}>Confirmar</button>
             </div>
             <div className="userContainer">
                 <div className="userShow">
@@ -104,7 +130,7 @@ const User = () => {
                                     <label>Nombre</label>
                                     <input
                                         type="text"
-                                        placeholder="Nombre"
+                                        placeholder={fixedData.username}
                                         className="userUpdateInput"
                                         name='username'
                                         value={data.username}
@@ -115,7 +141,7 @@ const User = () => {
                                     <label>Apellido Paterno</label>
                                     <input
                                         type="text"
-                                        placeholder="Apellido Paterno"
+                                        placeholder={fixedData.apellidoPaterno}
                                         className="userUpdateInput"
                                         name='apellidoPaterno'
                                         value={data.apellidoPaterno}
@@ -126,7 +152,7 @@ const User = () => {
                                     <label>Apellido Materno</label>
                                     <input
                                         type="text"
-                                        placeholder="Apellido Materno"
+                                        placeholder={fixedData.apellidoMaterno}
                                         className="userUpdateInput"
                                         name='apellidoMaterno'
                                         value={data.apellidoMaterno}
@@ -139,7 +165,7 @@ const User = () => {
                                     <label>Correo</label>
                                     <input
                                         type="text"
-                                        placeholder="Correo"
+                                        placeholder={fixedData.correo}
                                         className="userUpdateInput"
                                         name='correo'
                                         value={data.correo}
@@ -150,7 +176,7 @@ const User = () => {
                                     <label>Dirección</label>
                                     <input
                                         type="text"
-                                        placeholder="Direccion"
+                                        placeholder={fixedData.direccion}
                                         className="userUpdateInput"
                                         name='direccion'
                                         value={data.direccion}

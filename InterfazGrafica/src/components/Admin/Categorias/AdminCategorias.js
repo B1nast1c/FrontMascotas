@@ -80,12 +80,6 @@ const Categorylist = () => {
             renderCell: (params) => {
                 return (
                     <div>
-                        <Link to={"/admin/categoria/" + params.row.id}>
-                            <FontAwesomeIcon
-                                icon={faEdit}
-                                className="userListEdit"
-                            />
-                        </Link>
                         <FontAwesomeIcon
                             icon={faTrash}
                             className="userListDelete"
