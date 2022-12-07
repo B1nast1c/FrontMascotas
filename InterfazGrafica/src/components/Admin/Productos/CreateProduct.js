@@ -19,7 +19,7 @@ const createProduct = (producto) => {
             nombre: producto.nombre,
             cantidad: producto.cantidad,
             detalles: producto.detalles,
-            disponible: producto.disponible,
+            disponible: true,
             categoria: {
                 id: producto.categoria
             }
@@ -43,7 +43,7 @@ const AddProduct = () => {
             nombre: "",
             cantidad: "",
             detalles: "",
-            disponible: "true",
+            disponible: "",
             categoria: "",
             precio: "",
             descuento: ""
@@ -60,6 +60,15 @@ const AddProduct = () => {
     }
 
 
+    const options = [
+        { value: 'Alimentos', label: 'Alimentos' },
+        { value: 'Accesorios para el hogar', label: 'Accesorios para el hogar'},
+        { value: 'Accesorios para exteriores', label: 'Accesorios para exteriores' },
+        { value: 'Higiene y bienestar', label: 'Higiene y bienestar' },
+        { value: 'Juguetes', label: 'Juguetes' },
+    ]
+
+
     return (
         <div className="inner-form">
             <div className="newUser">
@@ -72,7 +81,9 @@ const AddProduct = () => {
                         </div>
                         <div className="newUserItem">
                             <label>Categoría</label>
-                            <select></select>
+                            <select name='categoria' value={producto.categoria || ''} onChange={handleInput}>
+                                {options.map((option) => (<option value={option.value}>{option.label}</option>))}
+                            </select>
                         </div>
                         <div className="newUserItem">
                             <label>Cantidad</label>
@@ -87,8 +98,7 @@ const AddProduct = () => {
                     <div className="form-right">
                         <div className="newUserItem">
                             <label>Detalles</label>
-                            <textarea rows="4" />
-                            <input type="text" name='detalles' value={producto.detalles || ''} onChange={handleInput} />
+                            <textarea rows="4" name='detalles' value={producto.detalles || ''} onChange={handleInput}  />
                         </div>
                         <div className="newUserItem">
                             <label>Disponibilidad</label>
