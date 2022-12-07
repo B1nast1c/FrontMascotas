@@ -4,7 +4,7 @@ import { faBox, faStar, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const Recomendacion = () => {
     return (
-        <section class="padding-y bg-light" style={{ marginTop: "1.2rem" }}>
+        <section className="padding-y bg-light" style={{ marginTop: "1.2rem" }}>
             <div className="container">
                 <h4 style={{ marginBottom: "1.2rem" }} className="card-title">
                     Elige Nuestra Tienda

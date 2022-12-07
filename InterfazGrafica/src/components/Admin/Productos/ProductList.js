@@ -57,19 +57,19 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.name}
+            {params.row.producto.nombre}
           </div>
         );
       },
     },
     {
       field: "cantidad",
-      headerName: "nº",
+      headerName: "Cant",
       width: 100,
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.cantidad}
+            {params.row.producto.cantidad}
           </div>
         );
       },
@@ -81,7 +81,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.detalles}
+            {params.row.producto.detalles}
           </div>
         );
       },
@@ -93,7 +93,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.disponible}
+            {params.row.producto.disponible.toString()}
           </div>
         );
       },
@@ -105,7 +105,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.categoria}
+            {params.row.producto.categoria.nombre}
           </div>
         );
       },
@@ -117,7 +117,7 @@ const Productlist = () => {
       renderCell: (params) => {
         return (
           <div className="userListUser">
-            {params.row.precio}
+            {"S/. " + params.row.monto}
           </div>
         );
       },
@@ -155,7 +155,7 @@ const Productlist = () => {
         rows={data}
         disableSelectionOnClick
         columns={columns}
-        pageSize={8}
+        pageSize={10}
         checkboxSelection
       />
     </div>

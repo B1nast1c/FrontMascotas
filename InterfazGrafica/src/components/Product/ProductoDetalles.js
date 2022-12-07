@@ -6,13 +6,19 @@ import {
     faTruck,
     faCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import swal from 'sweetalert'
 
 const ProductoDetalles = () => {
     const showModal = () => {
+        //Procedimiento para hacer el POST al carrito
+
         swal("El producto ha sido agregado al carrito")
     }
+
+    const location = useLocation()
+    const { producto } = location.state
+
     return (
         <section className="padding-y bg-white shadow-sm">
             <div className="container">
@@ -27,14 +33,14 @@ const ProductoDetalles = () => {
                     <div className="col-lg-4">
                         <article>
                             <p className="title h4 mb-1">
-                                Titulo del Producto
+                                {producto.producto.nombre}
                             </p>
                             <p className="text-success">
-                                <FontAwesomeIcon icon={faCheck} /> Estado Disponibilidad
+                                <FontAwesomeIcon icon={faCheck} /> Estado Disponibilidad {producto.producto.disponible ? "SI" : "NO"}
                             </p>
                             <hr />
                             <ul className="list-dots mb-4">
-                                <li>Detalles del Producto</li>
+                                <li>{producto.producto.detalles}</li>
                             </ul>
                         </article>
                     </div>
@@ -42,7 +48,7 @@ const ProductoDetalles = () => {
                         <div className="card shadow-sm">
                             <div className="card-body">
                                 <div className="mb-3">
-                                    <var className="price h5">Precio del producto</var>
+                                    <var className="price h5">Precio: S/. {producto.monto}</var>
                                     <span className="text-muted"> /por unidad</span>
                                 </div>
                                 <div className="mb-4">

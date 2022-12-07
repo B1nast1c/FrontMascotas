@@ -64,3 +64,7 @@
   background-color: #92bf6bc9;
   transform: translateY(-7px);
 }
+
+.file-upload input {
+  all: unset;
+}

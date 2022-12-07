@@ -49,7 +49,7 @@ const Profile = () => {
                     Este soy Yo...
                 </h1>
                 <p className="has-text-centered">
-                    Bienvenido a tu perfil, animal XDDDDDDDD
+                    Bienvenido a tu perfil, querido amante de los animales
                 </p>
             </div>
             <br />

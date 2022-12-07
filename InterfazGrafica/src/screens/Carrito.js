@@ -3,10 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Carrito = () => {
     const arr = [0, 0, 0]; //Array de productos en el carrito
+
+
+    const payProducts = () => {
+        if (localStorage.getItem("token") !== null) {
+            //Proceso de creación del pago
+            swal("El pago se ha realizado exitosamente")
+            return <redirect to="/" />
+        } else {
+            swal("Usted tiene que inciar sesión...")
+        }
+    }
     return (
         <div>
             <Header />
@@ -55,7 +67,7 @@ const Carrito = () => {
                                         <dd className="text-end">$DiositoDolares</dd>
                                     </dl>
                                     <hr />
-                                    <Link href="/" className="btn btn-primary mb-2 w-100">
+                                    <Link to="/" className="btn btn-primary mb-2 w-100" onClick={payProducts}>
                                         Pagar
                                     </Link>
                                 </div>

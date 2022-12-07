@@ -242,7 +242,15 @@ class Dropdown extends Component {
                                     </p>
                                 </li>
                             </Link>
+                            <Link to="/carrito">
+                                <li>
+                                    <p className="dropdown-item profile-item">
+                                        Ver Carrito
+                                    </p>
+                                </li>
+                            </Link>
                         </ul>
+
                     ) :
                         <ul className="dropdown-menu dropdown-menu-end">
                             <Link to="/perfil">
@@ -256,6 +264,13 @@ class Dropdown extends Component {
                                 <li>
                                     <p className="dropdown-item profile-item">
                                         Panel de Administrador
+                                    </p>
+                                </li>
+                            </Link>
+                            <Link to="/carrito">
+                                <li>
+                                    <p className="dropdown-item profile-item">
+                                        Ver Carrito
                                     </p>
                                 </li>
                             </Link>

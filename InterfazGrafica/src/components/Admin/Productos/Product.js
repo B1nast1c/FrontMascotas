@@ -8,8 +8,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/product.css";
+import axios from "axios";
 
 const User = () => {
+    const uploadFile = async (e) => {
+        const token = localStorage.getItem("token");
+        const headers = {
+            Authorization: token,
+            "Access-Control-Allow-Origin": "*",
+        };
+
+        var formData = new FormData()
+        formData.append("file", document.forms["productForm"].file.files[0])
+        formData.append("info", localStorage.getItem("cantidad") + 1) //Teoricamente va el id ddel producto
+
+        await axios.post("http://localhost:8080/imagenes/", formData, { headers: headers }) //Subir la imagen a la base de datos
+            .then(data => {
+                console.log(data)
+            }
+            )
+            .catch(err => console.log(err))
+    }
+
     return (
         <div className="user">
             <div className="userTitleContainer">
@@ -111,6 +131,14 @@ const User = () => {
                                             <p>No Disponible</p>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="userUpdateItem file-upload" >
+                                    <label>Imagen de Referencia</label>
+                                    <input
+                                        type="file"
+                                        onChange={uploadFile}
+                                        name="file"
+                                    />
                                 </div>
                             </div>
                         </div>

@@ -12,7 +12,7 @@ function Home() {
             <div>
                 <MainHeader />
                 <section className="padding-y bg-light">
-                    <Productos />
+                    <Productos categoria={0} />
                     <Recomendacion />
                 </section>
             </div>
