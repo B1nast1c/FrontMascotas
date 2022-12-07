@@ -44,9 +44,9 @@ function App() {
         <Route exact path="/admin/categorias" element={<ProtectedRoute><AdminCategorias /></ProtectedRoute>} />
         <Route exact path="/admin/categoria/:categoriaid" element={<ProtectedRoute><AdminCategoriaEditar /></ProtectedRoute>} />
         <Route exact path="/admin/categorias/crear" element={<ProtectedRoute><AdminCategoriaCrear /></ProtectedRoute>} />
-        <Route exact path="/admin/productos" element={<ProtectedRoute><AdminProductos /></ProtectedRoute>} />
+        <Route exact path="/admin/productos" element={<AdminProductos />/*<ProtectedRoute><AdminProductos /></ProtectedRoute>*/} />
         <Route exact path="/admin/producto/:categoriaid" element={<ProtectedRoute><AdminProductoEditar /></ProtectedRoute>} />
-        <Route exact path="/admin/productos/crear" element={<ProtectedRoute><AdminProductoCrear /></ProtectedRoute>} />
+        <Route exact path="/admin/productos/crear" element={<AdminProductoCrear />/*<ProtectedRoute><AdminProductoCrear /></ProtectedRoute>*/} />
         <Route exact path="/perfil" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
       </Routes>
     </Router>
