@@ -626,8 +626,6 @@ progress {
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 0.35rem;
   max-width: 100%;
   height: auto;
 }
@@ -3730,9 +3728,9 @@ fieldset:disabled .btn {
 }
 
 .btn-light:hover {
-  color: #000;
-  background-color: #f9fafb;
-  border-color: #f9fafb;
+  color: #f8f9fa;
+  background-color: rgb(237, 49, 74);
+  border-color: rgb(237, 49, 74);
 }
 
 .btn-check:focus + .btn-light,

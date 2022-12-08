@@ -33,8 +33,8 @@ a .title:hover {
   margin-top: 30px;
 }
 
-a:hover > .img-thumbnail {
-  border-color: #9da1a7;
+.img-thumbnail {
+  border: none;
 }
 
 .table-lg th,
@@ -213,8 +213,8 @@ a:hover > .img-thumbnail {
 }
 
 .img-sm {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
 }
 
 .img-md {
@@ -1447,6 +1447,8 @@ a.itemside:hover .img-thumbnail {
 .itemside .title {
   display: block;
   margin-bottom: 0rem;
+  font-size: 17.5px;
+  font-weight: bold;
 }
 
 .itemside a.title {

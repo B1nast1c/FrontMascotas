@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { Carrito } from './Carrito'
 import { Filter } from '../Filter'
 
-export const Productos = ({ categoria }) => {
+export const Productos = ({ categoria, keyword }) => {
     const [arr, setData] = useState([]);
 
-    const getProducts = (setData) => {
+    const getProducts = useCallback((setData) => {
         if (categoria !== 0) {
             axios
                 .get("http://localhost:8080/productos/categoria/" + categoria) //Editar usuarios normales SOLAMENTE
                 .then(data => {
                     const sorted = data.data
+                    const filtered = sorted.filter(producto => {
+                        if (keyword === '') {
+                            return producto;
+                        }
+                        var lowercase = keyword.toLowerCase()
+                        return producto.producto.nombre.toLowerCase().includes(lowercase)
+                    })
 
                     //Funcion de Sorting
                     if (localStorage.getItem("sort") !== "-1") {
                         if (localStorage.getItem("sort") === "1") {
-                            sorted.sort((a, b) => (a.name > b.monto) ? -1 : ((b.monto > a.monto) ? 1 : 0));
-                            setData(sorted)
+                            filtered.sort((a, b) => (a.name > b.monto) ? -1 : ((b.monto > a.monto) ? 1 : 0));
                         } else {
-                            sorted.sort((a, b) => (a.name > b.monto) ? 1 : ((b.monto > a.monto) ? -1 : 0));
-                            setData(sorted)
+                            filtered.sort((a, b) => (a.name > b.monto) ? 1 : ((b.monto > a.monto) ? -1 : 0));
                         }
                     }
 
-                    setData(sorted)
+                    setData(filtered)
                 })
                 .catch(err => {
                     console.log(err)
@@ -41,11 +46,11 @@ export const Productos = ({ categoria }) => {
                 })
                 .catch(err => console.log(err))
         }
-    }
+    }, [categoria, keyword])
 
     useEffect(() => {
         getProducts(setData)
-    }, [setData]);
+    }, [setData, getProducts]);
 
     //Obtener todos los productos dentro de la base de dato
     return (

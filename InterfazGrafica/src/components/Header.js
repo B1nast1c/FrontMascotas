@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faUser, faDog } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faDog, faBroom } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 
 
 //Inicio Petición Login 
@@ -46,14 +46,22 @@ const getUserInfor = () => {
 
 }
 
-const Header = () => {
+const Header = (props) => {
+
     const currentUser = localStorage.getItem("username") //Datos generales de la interfaz
+    const [data, setData] = useState("");
+    const { keyword } = props;
 
     useEffect(() => {
         if (localStorage.getItem("token") != null) {
             getUserInfor()
         }
     }, []);
+
+    const handleInput = (event) => {
+        setData(event.target.value)
+        keyword(data) //Global busqueda general
+    }
 
     return (
         <div className="section-header">
@@ -69,13 +77,16 @@ const Header = () => {
                             <form action="#" className="me-3">
                                 <div className="input-group w-100">
                                     <input
+                                        name="producto"
                                         type="text"
                                         className="form-control"
                                         placeholder="Buscar Productos..."
                                         style={{ width: "55%" }}
+                                        value={data}
+                                        onChange={handleInput}
                                     />
-                                    <button className="input-group-text btn btn-primary">
-                                        <FontAwesomeIcon icon={faSearch} />
+                                    <button onClick={() => keyword("")} className="input-group-text btn btn-primary">
+                                        <FontAwesomeIcon icon={faBroom} />
                                     </button>
                                 </div>
                             </form>
@@ -234,7 +245,7 @@ class Dropdown extends Component {
                                 </a>
                             </li>
                         </ul>
-                    ) : localStorage.getItem("rol") == 2 ? (
+                    ) : localStorage.getItem("rol") === 2 ? (
                         <ul className="dropdown-menu dropdown-menu-end">
                             <Link to="/perfil">
                                 <li>

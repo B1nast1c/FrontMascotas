@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
@@ -9,26 +9,26 @@ import axios from 'axios'
 
 
 export const Carrito = ({ product }) => {
-    const token = localStorage.getItem("token")
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": token,
-        'Access-Control-Allow-Origin': "*"
-    }
-
     const [img, setData] = useState()
     const [carrito, setCarrito] = useState({})
     var user = localStorage.getItem("username")
 
-    const getImage = (setData) => {
+    const getImage = useCallback((setData) => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
         axios.get("http://localhost:8080/imagenes/producto/" + product.producto.id, { headers: headers })
             .then(data => {
                 const string = data.data[0].dataImagen
                 setData(string)
             })
-    }
+    }, [product.producto.id])
 
-    const getUser = () => {
+    const getUser = useCallback(() => {
         const token = localStorage.getItem("token")
         const headers = {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const Carrito = ({ product }) => {
                     .then(data => setCarrito(data.data))
                     .catch(err => console.log(err))
             })
-    }
+    }, [user])
 
     const agregarCarrito = () => {
         const token = localStorage.getItem("token")
@@ -70,7 +70,7 @@ export const Carrito = ({ product }) => {
         if (user !== null) {
             getUser()
         }
-    }, [setData]);
+    }, [setData, user, getImage, getUser]);
 
     return (
         <div className="col-lg-3 col-sm-6 col-16">
