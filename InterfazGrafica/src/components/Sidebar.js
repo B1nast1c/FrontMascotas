@@ -2,7 +2,7 @@ import React from 'react'
 import './styles/sidebar.css'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBasketShopping, faDoorOpen, faHome, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBasketShopping, faDoorOpen, faHome, faMoneyBill, faUser } from "@fortawesome/free-solid-svg-icons";
 import { faListAlt } from '@fortawesome/free-regular-svg-icons';
 
 const adminLogout = () => {
@@ -39,6 +39,12 @@ const Sidebar = () => {
                             <li className="sidebarListItem active">
                                 <FontAwesomeIcon className="sidebarIcon" icon={faBasketShopping} />
                                 Productos
+                            </li>
+                        </Link>
+                        <Link to="/admin/pagos" className="Link">
+                            <li className="sidebarListItem active">
+                                <FontAwesomeIcon className="sidebarIcon" icon={faMoneyBill} />
+                                Pagos
                             </li>
                         </Link>
                         <Link to="/" className="Link">

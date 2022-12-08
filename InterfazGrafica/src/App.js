@@ -21,6 +21,7 @@ import AdminProductoEditar from './screens/AdminProductoEditar';
 import AdminProductoCrear from './screens/AdminProductoCrear';
 import UserProfile from './screens/UserProfile';
 import ProtectedRoute from './components/scripts/ProtectedRoute';
+import AdminPagos from './screens/AdminPagos';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/carrito" element={<Carrito />} />
         <Route exact path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route exact path="/admin/usuarios" element={<ProtectedRoute><Adminusers /></ProtectedRoute>} />
+        <Route exact path="/admin/pagos" element={<ProtectedRoute><AdminPagos /></ProtectedRoute>} />
         <Route exact path="/admin/usuarios/crear" element={<ProtectedRoute><AdminCreateuser /></ProtectedRoute>} />
         <Route exact path="/admin/categorias" element={<ProtectedRoute><AdminCategorias /></ProtectedRoute>} />
         <Route exact path="/admin/categoria/:categoriaid" element={<ProtectedRoute><AdminCategoriaEditar /></ProtectedRoute>} />

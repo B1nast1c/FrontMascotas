@@ -19,7 +19,7 @@ const Carrito = () => {
     var user = localStorage.getItem("username")
 
     const [carrito, setCarrito] = useState([])
-    const [carritoid, setCarritoId] = useState(0)
+    const [carritoid, setCarritoId] = useState({})
 
     const getUser = () => {
         axios.get("http://localhost:8080/usuarios/" + user, { headers: headers })
@@ -27,7 +27,7 @@ const Carrito = () => {
                 axios
                     .get("http://localhost:8080/carrito/usuario/" + user.data.id, { headers: headers })
                     .then(userData => {
-                        setCarritoId(userData.data.id)
+                        setCarritoId(userData.data)
                         axios
                             .get("http://localhost:8080/carrito/" + userData.data.id + "/productos", { headers: headers })
                             .then(productsData => {
@@ -40,11 +40,30 @@ const Carrito = () => {
 
     }
 
-    const payProducts = () => {
+    const payProducts = (suma, e) => {
+        e.preventDefault();
+
         if (localStorage.getItem("token") !== null) {
-            //Proceso de creación del pago y redirección al login (Vaciar elementos de la bd iterando :D)
+            const pago = {
+                estado: "Pagado",
+                monto: suma,
+                carrito: carritoid,
+                pedido: {
+                    id: carritoid.id
+                }
+            }
+
+            axios
+                .post("http://localhost:8080/pago/", pago, { headers: headers })
+                .then(data => {
+                    axios
+                        .post("http://localhost:8080/carrito/vaciar/", carritoid, { headers: headers })
+                        .then(data => console.log("El carrito se ha limpiado"))
+                        .catch(err => console.error(err))
+                })
+
             swal("El pago se ha realizado exitosamente")
-            return <redirect to="/" />
+            // return <redirect to="/" />
         } else {
             swal("Usted tiene que inciar sesión...")
         }
@@ -59,7 +78,7 @@ const Carrito = () => {
         }
 
         axios
-            .delete("http://localhost:8080/carrito/eliminar/" + carritoid + "/" + productId, { headers: headers })
+            .delete("http://localhost:8080/carrito/eliminar/" + carritoid.id + "/" + productId, { headers: headers })
             .then(_ => window.location.reload())
     }
 
@@ -126,7 +145,7 @@ const Carrito = () => {
                                         <dd className="text-end">S/. {suma}</dd>
                                     </dl>
                                     <hr />
-                                    <Link to="/" className="btn btn-primary mb-2 w-100" onClick={payProducts}>
+                                    <Link to="/" className="btn btn-primary mb-2 w-100" onClick={(e) => payProducts(suma, e)}>
                                         Pagar
                                     </Link>
                                 </div>
