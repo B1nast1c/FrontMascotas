@@ -13,9 +13,6 @@ const getUsers = (setData) => {
         "Authorization": token,
         'Access-Control-Allow-Origin': "*"
     }
-
-    console.log(token)
-
     axios
         .get("http://localhost:8080/usuarios/rol/2", { headers: headers }) //Editar usuarios normales SOLAMENTE
         .then(data => {

@@ -7,6 +7,7 @@ import axios from 'axios'
 //Productos más destacados o random, quien sabe xd
 //Este es el slider del producto
 
+
 export const Carrito = ({ product }) => {
     const token = localStorage.getItem("token")
     const headers = {
@@ -16,6 +17,8 @@ export const Carrito = ({ product }) => {
     }
 
     const [img, setData] = useState()
+    const [carrito, setCarrito] = useState({})
+    var user = localStorage.getItem("username")
 
     const getImage = (setData) => {
         axios.get("http://localhost:8080/imagenes/producto/" + product.producto.id, { headers: headers })
@@ -25,20 +28,55 @@ export const Carrito = ({ product }) => {
             })
     }
 
-    const agregarCarrito = () => {
+    const getUser = () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
 
+        axios.get("http://localhost:8080/usuarios/" + user, { headers: headers })
+            .then(data => {
+                axios
+                    .get("http://localhost:8080/carrito/usuario/" + data.data.id, { headers: headers })
+                    .then(data => setCarrito(data.data))
+                    .catch(err => console.log(err))
+            })
+    }
+
+    const agregarCarrito = () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
+        const productosCarrito = {
+            productoR: product.producto, //Obtener carrito usuario actual 
+            carritoR: carrito
+        }
+
+        axios
+            .post("http://localhost:8080/carrito/añadir", productosCarrito, { headers: headers })
+            .then(data => console.log(data)) //Añade lo registros a la BD 
+            .catch(err => console.error(err))
     }
 
 
     useEffect(() => {
         getImage(setData)
+        if (user !== null) {
+            getUser()
+        }
     }, [setData]);
 
     return (
         <div className="col-lg-3 col-sm-6 col-16">
             <div className="card card-product-grid">
                 <div className="img-wrap" style={{ padding: "0" }}>
-                    <img className='product-image' src={`data:image/jpeg;base64,${img}`} alt="ImagenProducto" />
+                    <img className='product-image' src={`data:image/jpeg;base64,${img || ''}`} alt="ImagenProducto" />
                 </div>
                 <div className="info-wrap">
                     <Link to="/producto" className="title" state={{ "producto": product, "imagen": img }}>

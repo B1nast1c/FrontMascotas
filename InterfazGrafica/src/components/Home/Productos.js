@@ -54,7 +54,7 @@ export const Productos = ({ categoria }) => {
             <div className="container">
                 <div className="row">
                     {arr.map((product) => {
-                        return <Carrito product={product} />
+                        return <Carrito product={product} key={product.producto.id} />
                     }
                     )
                     }

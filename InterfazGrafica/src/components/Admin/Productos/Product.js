@@ -40,6 +40,7 @@ const getProducto = (id, setFixedData) => {
     axios
         .get("http://localhost:8080/productos/" + id, { headers: headers })
         .then(data => {
+            console.log(data.data)
             setFixedData(data.data)
         })
         .catch(err => console.error(err))
@@ -64,6 +65,7 @@ const User = () => { //Producto >:v
     const [fixedData, setFixedData] = useState({
         id: 0,
         monto: '',
+
         producto: {
             id: 0,
             nombre: "",
@@ -112,25 +114,23 @@ const User = () => { //Producto >:v
 
     const handleSelected = (event) => {
         setCategory(event.target.value)
-        console.log(category)
     }
 
     const updateProducto = (e) => {
-        e.preventDefault();
-
-
         const updatedProduct = {
             productoR: {
+                id: productoid,
                 nombre: data.nombre,
                 cantidad: data.cantidad,
                 detalles: data.detalles,
                 disponible: data.disponible,
                 categoria: {
-                    id: data.categoria,
+                    id: category,
                 },
             },
             precioR: {
-                precio: data.precio,
+                id: fixedData.id,
+                descuento: 0,
                 monto: data.precio
             },
         }
@@ -142,8 +142,10 @@ const User = () => { //Producto >:v
             'Access-Control-Allow-Origin': "*"
         }
 
+        console.log(updatedProduct)
+
         axios
-            .put("http://localhost:8080/productos/" + productoid, updatedProduct, { headers: headers })
+            .put("http://localhost:8080/productos/", updatedProduct, { headers: headers })
             .then(data => {
                 console.log(data.data)
             })

@@ -12,9 +12,6 @@ const userLogout = () => { //Elimina los datos de la localstorage
 }
 
 const userLogin = (username, password, e) => {
-    e.preventDefault();
-
-
     const loginData = {
         username: username,
         password: password

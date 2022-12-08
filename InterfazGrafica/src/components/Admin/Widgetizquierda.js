@@ -34,7 +34,7 @@ const Widgetizquierda = () => {
             <ul className="widgetSmList">
                 {
                     data.map(admin => (
-                        <li className="widgetSmListItem">
+                        <li className="widgetSmListItem" key={admin.id}>
                             <img
                                 src="https://i.pinimg.com/736x/39/7a/2f/397a2f1c79ac945f5d08b0039f82ab08.jpg"
                                 alt=""

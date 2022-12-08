@@ -18,7 +18,6 @@ const getProducts = (setData) => { //Obtencion todos los productos
     .get("http://localhost:8080/productos/", { headers: headers })
     .then(data => {
       setData(data.data)
-      console.log(data.data)
     })
     .catch(err => console.error(err))
 

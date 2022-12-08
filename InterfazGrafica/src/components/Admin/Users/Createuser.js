@@ -34,8 +34,9 @@ const userRegister = (userData, e) => { //Elimina los datos de la localstorage
     }
 
     axios
-        .post("http://localhost:8080/usuarios/", user)
+        .post("http://localhost:8080/usuarios/", user, { headers: headers })
         .then(data => {
+            console.log(data.data)
             const carrito = {
                 usuario: user
             }
