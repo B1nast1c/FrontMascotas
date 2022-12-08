@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import axios from 'axios';
@@ -26,7 +25,6 @@ const Pagoslist = () => {
 
   useEffect(() => {
     getPagos(setData)
-    console.log(data)
   }, [setData]);
 
   const columns = [

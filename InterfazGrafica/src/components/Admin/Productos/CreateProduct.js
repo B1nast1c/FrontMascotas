@@ -51,7 +51,6 @@ const createProduct = (producto, e) => {
 
 const AddProduct = () => {
     const [data, setData] = useState([])
-    const [category, setCategory] = useState("");
 
     useEffect(() => {
         getCategories(setData);

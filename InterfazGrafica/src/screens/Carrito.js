@@ -40,8 +40,6 @@ const Carrito = () => {
     }
 
     const payProducts = (suma, e) => {
-        e.preventDefault();
-
         if (localStorage.getItem("token") !== null) {
             const pago = {
                 estado: "Pagado",
@@ -55,7 +53,6 @@ const Carrito = () => {
             axios
                 .post("http://localhost:8080/pago/", pago, { headers: headers })
                 .then(data => {
-                    console.log(data) //Salida de los pagos creados :D
                     axios
                         .delete("http://localhost:8080/carrito/vaciar/" + carritoid.id, { headers: headers })
                         .then(data => console.log(data.data))
@@ -63,7 +60,6 @@ const Carrito = () => {
                 })
 
             swal("El pago se ha realizado exitosamente")
-            // return <redirect to="/" />
         } else {
             swal("Usted tiene que inciar sesión...")
         }
