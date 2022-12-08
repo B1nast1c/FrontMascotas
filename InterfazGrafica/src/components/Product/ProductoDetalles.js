@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faStar,
@@ -8,18 +8,60 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from 'react-router-dom';
 import swal from 'sweetalert'
+import axios from 'axios';
 
 const ProductoDetalles = () => {
-    const showModal = () => {
-        //Procedimiento para hacer el POST al carrito
+    const location = useLocation()
+    const { producto, imagen } = location.state
+    const [carrito, setCarrito] = useState({})
+    var user = localStorage.getItem("username")
 
+    const getUser = useCallback(() => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
+        axios.get("http://localhost:8080/usuarios/" + user, { headers: headers })
+            .then(data => {
+                axios
+                    .get("http://localhost:8080/carrito/usuario/" + data.data.id, { headers: headers })
+                    .then(data => setCarrito(data.data))
+                    .catch(err => console.log(err))
+            })
+    }, [user])
+
+    const agregarCarrito = () => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
+        const productosCarrito = {
+            productoR: producto.producto, //Obtener carrito usuario actual 
+            carritoR: carrito
+        }
+
+        axios
+            .post("http://localhost:8080/carrito/añadir", productosCarrito, { headers: headers })
+            .then(data => console.log(data)) //Añade lo registros a la BD 
+            .catch(err => console.error(err))
+    }
+
+    const showModal = () => {
+        agregarCarrito()
         swal("El producto ha sido agregado al carrito")
     }
 
-    const location = useLocation()
-    const { producto, imagen } = location.state
-    console.log(location.state)
-
+    useEffect(() => {
+        if (user !== null) {
+            getUser()
+        }
+    }, [user, getUser]);
 
     return (
         <section className="padding-y bg-white shadow-sm">
@@ -54,7 +96,7 @@ const ProductoDetalles = () => {
                                     <span className="text-muted"> /por unidad</span>
                                 </div>
                                 <div className="mb-4">
-                                    <p onClick={() => showModal()} to="/" className="btn btn-primary w-100 mb-2">
+                                    <p onClick={() => showModal()} className="btn btn-primary w-100 mb-2">
                                         Añadir al Carrito
                                     </p>
                                     <Link to="/carrito" className="btn btn-light w-100 mb-2">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../../styles/userlist.css"
 import { DataGrid } from '@material-ui/data-grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const getUsers = (setData) => {
@@ -117,12 +117,6 @@ const Userlist = () => {
             renderCell: (params) => {
                 return (
                     <div>
-                        <Link to={"/admin/usuario/" + params.row.username}>
-                            <FontAwesomeIcon
-                                icon={faEdit}
-                                className="userListEdit"
-                            />
-                        </Link>
                         <FontAwesomeIcon
                             icon={faTrash}
                             className="userListDelete"

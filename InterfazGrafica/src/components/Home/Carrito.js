@@ -3,6 +3,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import swal from 'sweetalert';
 
 //Productos más destacados o random, quien sabe xd
 //Este es el slider del producto
@@ -60,7 +61,7 @@ export const Carrito = ({ product }) => {
 
         axios
             .post("http://localhost:8080/carrito/añadir", productosCarrito, { headers: headers })
-            .then(data => console.log(data)) //Añade lo registros a la BD 
+            .then(data => swal("Su producto se ha añadido correctamente al carrito")) //Añade lo registros a la BD 
             .catch(err => console.error(err))
     }
 

@@ -9457,6 +9457,12 @@ fieldset:disabled .btn {
   color: #9da1a7 !important;
 }
 
+.monto {
+  color: rgb(253, 152, 91) !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 .text-black-50 {
   color: rgba(0, 0, 0, 0.5) !important;
 }

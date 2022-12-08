@@ -12,7 +12,6 @@ import Producto from './screens/Producto';
 import Carrito from './screens/Carrito';
 import AdminDashboard from './screens/AdminDashboard';
 import Adminusers from './screens/Adminusers';
-import AdminUserScreen from './screens/AdminUserScreen';
 import AdminCreateuser from './screens/AdminCreateuser';
 import AdminCategorias from './screens/AdminCategorias';
 import AdminCategoriaEditar from './screens/AdminCategoriaEditar';
@@ -39,7 +38,6 @@ function App() {
         <Route exact path="/carrito" element={<Carrito />} />
         <Route exact path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
         <Route exact path="/admin/usuarios" element={<ProtectedRoute><Adminusers /></ProtectedRoute>} />
-        <Route exact path="/admin/usuario/:usuarioid" element={<ProtectedRoute><AdminUserScreen /></ProtectedRoute>} />
         <Route exact path="/admin/usuarios/crear" element={<ProtectedRoute><AdminCreateuser /></ProtectedRoute>} />
         <Route exact path="/admin/categorias" element={<ProtectedRoute><AdminCategorias /></ProtectedRoute>} />
         <Route exact path="/admin/categoria/:categoriaid" element={<ProtectedRoute><AdminCategoriaEditar /></ProtectedRoute>} />

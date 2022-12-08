@@ -19,6 +19,7 @@ const Carrito = () => {
     var user = localStorage.getItem("username")
 
     const [carrito, setCarrito] = useState([])
+    const [carritoid, setCarritoId] = useState(0)
 
     const getUser = () => {
         axios.get("http://localhost:8080/usuarios/" + user, { headers: headers })
@@ -26,6 +27,7 @@ const Carrito = () => {
                 axios
                     .get("http://localhost:8080/carrito/usuario/" + user.data.id, { headers: headers })
                     .then(userData => {
+                        setCarritoId(userData.data.id)
                         axios
                             .get("http://localhost:8080/carrito/" + userData.data.id + "/productos", { headers: headers })
                             .then(productsData => {
@@ -46,6 +48,19 @@ const Carrito = () => {
         } else {
             swal("Usted tiene que inciar sesión...")
         }
+    }
+
+    const removeItem = (productId) => {
+        const token = localStorage.getItem("token")
+        const headers = {
+            "Content-Type": "application/json",
+            "Authorization": token,
+            'Access-Control-Allow-Origin': "*"
+        }
+
+        axios
+            .delete("http://localhost:8080/carrito/eliminar/" + carritoid + "/" + productId, { headers: headers })
+            .then(_ => window.location.reload())
     }
 
     useEffect(() => {
@@ -81,14 +96,17 @@ const Carrito = () => {
                                                         </div>
                                                         <div className="info">
                                                             <p className="title">
-                                                                {item.nombre}
+                                                                {item.producto.nombre}
                                                             </p>
-                                                            <span className="text-muted"> {item.categoria.nombre} </span>
+                                                            <span className="text-muted"> {item.producto.categoria.nombre} </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="col text-end">
-                                                    <p className="btn btn-icon btn-light">
+                                                    <p>
+                                                        <span className="monto"> S/. {item.monto} </span>
+                                                    </p>
+                                                    <p onClick={() => removeItem(item.id)} className="btn btn-icon btn-light">
                                                         <FontAwesomeIcon icon={faTrash} />
                                                     </p>
                                                 </div>
