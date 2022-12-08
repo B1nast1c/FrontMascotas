@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from 'axios';
 
@@ -56,9 +55,10 @@ const Carrito = () => {
             axios
                 .post("http://localhost:8080/pago/", pago, { headers: headers })
                 .then(data => {
+                    console.log(data) //Salida de los pagos creados :D
                     axios
-                        .post("http://localhost:8080/carrito/vaciar/", carritoid, { headers: headers })
-                        .then(data => console.log("El carrito se ha limpiado"))
+                        .delete("http://localhost:8080/carrito/vaciar/" + carritoid.id, { headers: headers })
+                        .then(data => console.log(data.data))
                         .catch(err => console.error(err))
                 })
 
@@ -145,9 +145,9 @@ const Carrito = () => {
                                         <dd className="text-end">S/. {suma}</dd>
                                     </dl>
                                     <hr />
-                                    <Link to="/" className="btn btn-primary mb-2 w-100" onClick={(e) => payProducts(suma, e)}>
+                                    <p className="btn btn-primary mb-2 w-100" onClick={(e) => payProducts(suma, e)}>
                                         Pagar
-                                    </Link>
+                                    </p>
                                 </div>
                             </div>
                         </aside>
