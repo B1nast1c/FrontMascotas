@@ -70,6 +70,8 @@ const Carrito = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
+    let suma = 0
+
     return (
         <div>
             <Header />
@@ -80,6 +82,7 @@ const Carrito = () => {
                         <div className="col-md-9">
                             {
                                 carrito.map((item, id) => {
+                                    suma += item.monto
                                     return (
                                         <article className="card card-body mb-3" key={id}>
                                             <div className="row gy-3 align-items-center">
@@ -119,8 +122,8 @@ const Carrito = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <dl className="dlist-align">
-                                        <dt>Precio Total:</dt>
-                                        <dd className="text-end">S/. </dd>
+                                        <dt className='price'>Precio Total:</dt>
+                                        <dd className="text-end">S/. {suma}</dd>
                                     </dl>
                                     <hr />
                                     <Link to="/" className="btn btn-primary mb-2 w-100" onClick={payProducts}>

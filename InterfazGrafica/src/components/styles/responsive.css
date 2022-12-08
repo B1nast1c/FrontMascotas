@@ -9379,6 +9379,13 @@ fieldset:disabled .btn {
 
 .text-end {
   text-align: right !important;
+  font-size: 22px;
+  font-weight: 700;
+  color: rgb(242, 46, 75);
+}
+
+.price {
+  font-weight: 600 !important;
 }
 
 .text-center {
